@@ -1,4 +1,4 @@
-# clyde
+# Clyde
 > A Fintech App for Students
 A new Flutter project.
 
