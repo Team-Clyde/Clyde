@@ -6,7 +6,7 @@ class DetailWalletScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.deepOrange,
+      backgroundColor: Colors.blueGrey[50],
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(100.0),
         child: SafeArea(

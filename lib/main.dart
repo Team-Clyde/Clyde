@@ -41,7 +41,7 @@ class _MainAppState extends State<MainApp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blueGrey[50],
+      backgroundColor: Colors.deepOrangeAccent,
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(100.0),
         child: SafeArea(
