@@ -1,4 +1,5 @@
 import 'package:clyde/ui/component.dart';
+import 'package:clyde/ui/screen/detail_wallet.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -22,10 +23,20 @@ class _HomeScreenState extends State<HomeScreen> {
               const SizedBox(
                 width: 20,
               ),
-              _cardWalletBalance(
-                  total: '\$39.389',
-                  totalCrypto: '7.2521322 BTC',
-                  percent: 2.999),
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const DetailWalletScreen(),
+                    ),
+                  );
+                },
+                child: _cardWalletBalance(
+                    total: '\$39.389',
+                    totalCrypto: '7.2521322 BTC',
+                    percent: 2.999),
+              ),
               _cardWalletBalance(
                   total: '\$9.389',
                   totalCrypto: '7.2521322 ETH',
@@ -66,8 +77,29 @@ class _HomeScreenState extends State<HomeScreen> {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                _listCryptoItem(),
-                _listCryptoItem(),
+                _listCryptoItem(
+                    iconUrl:
+                        'https://icons.iconarchive.com/icons/cjdowner/cryptocurrency/128/Bitcoin-icon.png',
+                    myCrypto: '3.52893030 BTC',
+                    myProfit: '\$19.153',
+                    myBalance: '\$5.441',
+                    percent: 4.32),
+                _listCryptoItem(
+                  iconUrl:
+                      'https://icons.iconarchive.com/icons/cjdowner/cryptocurrency/128/Ethereum-icon.png',
+                  myCrypto: '12.83789 ETH',
+                  myBalance: '\$ 401',
+                  myProfit: '\$4.822',
+                  percent: 3.97,
+                ),
+                _listCryptoItem(
+                  iconUrl:
+                      'https://icons.iconarchive.com/icons/cjdowner/cryptocurrency/128/Ripple-icon.png',
+                  myCrypto: '1911.6374736 XRP',
+                  myBalance: '\$ 0.45',
+                  myProfit: '\$859',
+                  percent: -13.55,
+                ),
               ],
             ),
           ),
@@ -76,7 +108,12 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Widget _listCryptoItem() {
+  Widget _listCryptoItem(
+      {required String iconUrl,
+      required double percent,
+      required String myCrypto,
+      myBalance,
+      myProfit}) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 20),
       child: card(
@@ -84,7 +121,7 @@ class _HomeScreenState extends State<HomeScreen> {
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Image.network(
-            'https://icons.iconarchive.com/icons/cjdowner/cryptocurrency/128/Bitcoin-icon.png',
+            iconUrl,
             width: 50,
           ),
           const SizedBox(
@@ -93,25 +130,33 @@ class _HomeScreenState extends State<HomeScreen> {
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: const [
+              children: [
                 Text(
-                  '656575 BTC',
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                  myCrypto,
+                  style: const TextStyle(
+                      fontWeight: FontWeight.bold, fontSize: 16),
                 ),
                 Text(
-                  '\$656575',
-                  style: TextStyle(
+                  myProfit,
+                  style: const TextStyle(
                       fontWeight: FontWeight.bold, color: Colors.black45),
                 ),
               ],
             ),
           ),
           Column(
-            children: const [
-              Text('\$6.88', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14),),
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
               Text(
-                '+78%',
-                style: TextStyle(fontWeight: FontWeight.bold, color: Colors.green),
+                myBalance,
+                style:
+                    const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+              ),
+              Text(
+                percent >= 0 ? '+$percent%' : '$percent%',
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: percent >= 0 ? Colors.green : Colors.pink),
               )
             ],
           )
