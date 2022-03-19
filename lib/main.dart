@@ -1,3 +1,4 @@
+import 'package:clyde/ui/screen/home.dart';
 import 'package:flutter/material.dart';
 import 'ui/component.dart';
 
@@ -42,7 +43,7 @@ class _MainAppState extends State<MainApp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blueGrey,
+      backgroundColor: Colors.white,
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(100.0),
         child: SafeArea(
@@ -59,7 +60,7 @@ class _MainAppState extends State<MainApp> {
         ),
       ),
       body: _buildScreen(),
-      buttomNavigationBar: _bottomNavigationBar(),
+      bottomNavigationBar: _bottomNavigationBar(),
     );
   }
 
@@ -104,17 +105,23 @@ class _MainAppState extends State<MainApp> {
         return Icons.notifications;
       case TabItem.setting:
         return Icons.settings;
+      default:
+        throw 'Unknown $item';
     }
   }
 
   Widget _buildScreen() {
-    switch (_currentItem) {
+    switch(_currentItem) {
       case TabItem.home:
-        return Container(
-          child: const Center(child: Text('Home')),
-        );
-        break;
+        return const HomeScreen();
+      case TabItem.explore:
+        return Container(child: const Center(child: Text('Explore'),),);
+      case TabItem.notification:
+        return Container(child: const Center(child: Text('Notification'),),);
+      case TabItem.setting:
+        return Container(child: const Center(child: Text('Settings'),),);
       default:
+        return const HomeScreen();
     }
   }
 }
