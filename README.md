@@ -1,16 +1,10 @@
-# Clyde
-> A Fintech App for Students
-A new Flutter project.
+# Flutter UI Wallet Cryptocurrency
 
-## Getting Started
+## References 
+[wallet cryptocurrency mobile app](https://www.freepik.com/free-psd/template-wallet-cryptocurrency-mobile-app_12385833.htm)
 
-This project is a starting point for a Flutter application.
+![Wallet_Cryptocurrency_Mobile_App](https://user-images.githubusercontent.com/37796466/109503400-cb708c80-7acc-11eb-8d47-37acd362204c.jpg)
 
-A few resources to get you started if this is your first Flutter project:
+## Flutter
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+![Wallet_Cryptocurrency_Mobile_App - flutter](https://user-images.githubusercontent.com/37796466/110117690-d0468080-7deb-11eb-9965-fd1722bd78b2.jpg)

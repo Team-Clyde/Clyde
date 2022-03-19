@@ -1,23 +1,22 @@
-import 'package:clyde/ui/screen/home.dart';
 import 'package:flutter/material.dart';
-import 'ui/component.dart';
+import 'package:wallet_cryptocurrency/ui/component.dart';
+import 'package:wallet_cryptocurrency/ui/screen/home.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+class MyApp extends StatefulWidget {
+  @override
+  _MyAppState createState() => _MyAppState();
+}
 
-  // This widget is the root of your application.
+class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Clyde Wallet',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const MainApp(),
+      title: 'Wallet Cryptocurrency',
+      home: MainApp(),
       debugShowCheckedModeBanner: false,
     );
   }
@@ -26,10 +25,8 @@ class MyApp extends StatelessWidget {
 enum TabItem { home, explore, notification, setting }
 
 class MainApp extends StatefulWidget {
-  const MainApp({Key? key}) : super(key: key);
-
   @override
-  State<MainApp> createState() => _MainAppState();
+  _MainAppState createState() => _MainAppState();
 }
 
 class _MainAppState extends State<MainApp> {
@@ -40,23 +37,18 @@ class _MainAppState extends State<MainApp> {
     TabItem.notification,
     TabItem.setting
   ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.deepOrangeAccent,
+      backgroundColor: Colors.blueGrey[50],
       appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(100.0),
+        preferredSize: Size.fromHeight(100.0),
         child: SafeArea(
           child: appBar(
-              left: const Icon(
-                Icons.notes,
-                color: Colors.black54,
-              ),
+              left: Icon(Icons.notes, color: Colors.black54),
               title: 'Wallets',
-              right: const Icon(
-                Icons.account_balance_wallet,
-                color: Colors.black54,
-              )),
+              right: Icon(Icons.account_balance_wallet, color: Colors.black54)),
         ),
       ),
       body: _buildScreen(),
@@ -66,33 +58,30 @@ class _MainAppState extends State<MainApp> {
 
   Widget _bottomNavigationBar() {
     return BottomNavigationBar(
+      type: BottomNavigationBarType.fixed,
       items: _bottomTabs
           .map((tabItem) => _bottomNavigationBarItem(_icon(tabItem), tabItem))
           .toList(),
       onTap: _onSelectTab,
       showSelectedLabels: false,
       showUnselectedLabels: false,
-      type: BottomNavigationBarType.fixed,
     );
-  }
-
-  void _onSelectTab(int index) {
-    TabItem selectedTabItem = _bottomTabs[index];
-    setState(() {
-      _currentItem = selectedTabItem;
-    });
   }
 
   BottomNavigationBarItem _bottomNavigationBarItem(
       IconData icon, TabItem tabItem) {
     final Color color =
         _currentItem == tabItem ? Colors.black54 : Colors.black26;
-    return BottomNavigationBarItem(
-        icon: Icon(
-          icon,
-          color: color,
-        ),
-        label: '');
+
+    return BottomNavigationBarItem(icon: Icon(icon, color: color), label: '');
+  }
+
+  void _onSelectTab(int index) {
+    TabItem selectedTabItem = _bottomTabs[index];
+
+    setState(() {
+      _currentItem = selectedTabItem;
+    });
   }
 
   IconData _icon(TabItem item) {
@@ -111,17 +100,17 @@ class _MainAppState extends State<MainApp> {
   }
 
   Widget _buildScreen() {
-    switch(_currentItem) {
+    switch (_currentItem) {
       case TabItem.home:
-        return const HomeScreen();
+        return HomeScreen();
       case TabItem.explore:
-        return Container(child: const Center(child: Text('Explore'),),);
+      // return HomeScreen();
       case TabItem.notification:
-        return Container(child: const Center(child: Text('Notification'),),);
+      // return HomeScreen()
       case TabItem.setting:
-        return Container(child: const Center(child: Text('Settings'),),);
+      // return HomeScreen()
       default:
-        return const HomeScreen();
+        return HomeScreen();
     }
   }
 }

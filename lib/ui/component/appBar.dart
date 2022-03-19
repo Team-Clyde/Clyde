@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
-Widget appBar(
-    {required Widget left, required String title, required Widget right}) {
+Widget appBar({Widget left, String title, Widget right}) {
   return Container(
     color: Colors.white,
     child: Padding(
@@ -11,13 +10,14 @@ Widget appBar(
         children: [
           left,
           Text(
-            title,
-            style: const TextStyle(
-                color: Colors.black54,
-                fontSize: 25,
-                fontWeight: FontWeight.bold),
+            '$title',
+            style: TextStyle(
+              color: Colors.black54,
+              fontSize: 25,
+              fontWeight: FontWeight.bold,
+            ),
           ),
-          right,
+          right
         ],
       ),
     ),
